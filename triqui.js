@@ -1,10 +1,14 @@
-var tablero = [["","",""],["","",""],["","",""]];
+var tablero = [];
 var marca = "x";
 var marcas = [];
 
-function marcar(id, fila, columna){
+function iniciarJuego(){
+    location.reload();
+}
+
+function marcar(id, indice){
     
-    tablero[fila, columna] = marca;
+    tablero[indice] = marca;
 
     if(marcas.length > 1)
     {
@@ -19,7 +23,9 @@ function marcar(id, fila, columna){
 
     marcas.push(id);
 
-    var img = document. createElement('img');
+    var img = document.createElement('img');
+    img.style.width = "100px";
+    img.className = "center";
     
     img.src = marca + ".png";
 
@@ -40,79 +46,63 @@ function marcar(id, fila, columna){
 
 function verificarFilas(marcaJ){
     
+    var esValido = false;
 
-    for (var i = 0; i < 3; i++) {
-        var conteo = 0;
-        for (var j = 0; j < 3; j++) {
-            if(tablero[i][j] == marcaJ){
-        
-                conteo++;
+    if(tablero[0] == marcaJ && tablero[1] == marcaJ && tablero[2] == marcaJ){
+        esValido = true;
+    }else if(tablero[3] == marcaJ && tablero[4] == marcaJ && tablero[5] == marcaJ){
+        esValido = true;
+    }
+    else if(tablero[6] == marcaJ && tablero[7] == marcaJ && tablero[8] == marcaJ){
+        esValido = true;
+    }
 
-                if(conteo == 3){
-                    alert('ganador jugador ' + marcaJ);
-                    return;
-                }
-            }
-        }
+    if(esValido){
+        alert('ganador jugador ' + marcaJ);
     }
 }
 
 function verificarColumnas(marcaJ){
     
-    for (var i = 0; i < 3; i++) {
-        var conteo = 0;
-        for (var j = 0; j < 3; j++) {
-            if(tablero[j][i] == marcaJ){
-        
-                conteo++;
+    var esValido = false;
 
-                if(conteo == 3){
-                    alert('ganador jugador ' + marcaJ);
-                    return;
-                }
-            }
-        }
+    if(tablero[0] == marcaJ && tablero[3] == marcaJ && tablero[6] == marcaJ){
+        esValido = true;
+    }else if(tablero[1] == marcaJ && tablero[4] == marcaJ && tablero[7] == marcaJ){
+        esValido = true;
+    }
+    else if(tablero[2] == marcaJ && tablero[5] == marcaJ && tablero[8] == marcaJ){
+        esValido = true;
+    }
+
+    if(esValido){
+        alert('ganador jugador ' + marcaJ);
     }
 }
 
 function verificarDiagonalPrincipal(marcaJ){
     
-    var conteo = 0;
+    var esValido = false;
 
-    for (var i = 0; i < 3; i++) {
-        
-        for (var j = 0; j < 3; j++) {
-            
-            if(i == j && tablero[i][j] == marcaJ){
-        
-                conteo++;
+    if(tablero[0] == marcaJ && tablero[4] == marcaJ && tablero[8] == marcaJ){
+        esValido = true;
+    }
 
-                if(conteo == 3){
-                    alert('ganador jugador ' + marcaJ);
-                    return;
-                }
-            }
-        }
+    if(esValido){
+        alert('ganador jugador ' + marcaJ);
     }
 }
 
 function verificarDiagonalSecundaria(marcaJ){
     
-    var conteo = 0;
+    var esValido = false;
 
-    for (var i = 0; i < 3; i++) {
-        
-        for (var j = 0; j < 3; j++) {
-            if((i + j == 2) && tablero[i][j] == marcaJ){
-        
-                conteo++;
+    if(tablero[2] == marcaJ && tablero[4] == marcaJ && tablero[6] == marcaJ){
+        esValido = true;
+    }
 
-                if(conteo == 3){
-                    alert('ganador jugador' + marcaJ);
-                    return;
-                }
-            }
-        }
+    if(esValido){
+        alert('ganador jugador ' + marcaJ);
     }
 
 }
